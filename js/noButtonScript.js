@@ -2,11 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const noButton = document.getElementById('noButton');
     const mainImage = document.getElementById('mainImage');
     let hoverCount = 0;
+    let MAX_THRESHOLD = 50;
     
     if (!noButton) {
         console.error("noButton not found");
         return;
     }
+
+
+    // credits to LINEFRIENDS for the giphy content
+    console.log("Thank you @LINEFRIENDS for the giphy content!");
 
     // Define the image URLs (must declare the variables before the thresholds array)
     const originalImg = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjJwMGx6YXQzc2o1aHE3cnN0YWplaHg4ZXN6eHQ3NzVudXZvYmxuOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/9M4HFU1bgot1ylXcAA/giphy.gif";
@@ -18,7 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const seventhImg = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExanlyN2d5MnE4Y3RobG15ZTlkZ3VieDNiMDgzNzd0NmVyNnRnZmo4byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VW3NjsftrG7rxz68WL/giphy.gif";
     const eighthImg = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWtuYWU0bzJtaXBoNnNsbTJ6Mjh1MmFxNW5naGVuaGg5c2hrMHFqciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/L4rr1biuCsjyqxsJkC/giphy.gif";
     const ninthImg = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHl4Zjlsb214aHI1bTF1c2Z4ZHI5d3hqOXN3YWZncGgyaXY2MmlzZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/fmWeP9PyyAeEmH0zZb/giphy.gif";
-
+    const tenthImg = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTFtOGxreHFpN3VkcW44eXdldzZzdDQ4c3d0aThpem4xYmQ4NDRzZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/FQOc1HFKpomgDm7uZm/giphy.gif";
+    const eleventhImg = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGFkaTBxNzg4aTFqcjVvdnE2dXJ6bmR6ZnQ3MGRjYW9mMG43bHZmcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/rLtrnJVGzQnhAGNa3l/giphy.gif";
+    ``
     // Create an ordered array of thresholds (ascending order)
     // When hoverCount >= count, set imgPath to the corresponding image.
     const thresholds = [
@@ -29,7 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
         { count: 24, imgPath: sixthImg },
         { count: 28, imgPath: seventhImg },
         { count: 32, imgPath: eighthImg },
-        { count: 36, imgPath: ninthImg }
+        { count: 36, imgPath: ninthImg },
+        { count: 40, imgPath: tenthImg },
+        { count: 44, imgPath: eleventhImg }
+        
         // Add more thresholds here as needed by replicating the line above.
     ];
 
@@ -57,6 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
             thresholds.forEach(threshold => {
                 if (hoverCount >= threshold.count) {
                     newImg = threshold.imgPath;
+                }
+                if (hoverCount >= MAX_THRESHOLD) { // reset the hoverCount and image to the original
+                    hoverCount = 0;
+                    newImg = originalImg;
                 }
             });
             // Update the mainImage src only if it is different from the current source.
