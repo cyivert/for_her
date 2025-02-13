@@ -6,5 +6,5 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
     // Lower the background audio volume (0.2 is 20% volume)
-    backgroundAudio.volume = 0.2;
+    backgroundAudio.volume = 0.5;
 });
